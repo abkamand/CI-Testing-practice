@@ -12,7 +12,7 @@ def conv_num(num_str):
     if not isinstance(num_str, str):
         return None
 
-    # Check for empty string
+    # Check for an empty string
     if num_str == '':
         return None
 
