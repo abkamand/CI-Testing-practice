@@ -43,6 +43,7 @@ def convert_dec_to_bin(number):
             # CITATION: See Byers, Works Cited at end
             binaryString = stringRemainder + binaryString
 
+        # CITATION: See RapidTables.com Contributors, Works Cited at end
         # Now we just need to prepend the negative sign
         binaryString = "-" + binaryString
 
@@ -72,6 +73,10 @@ Byers, Mark <StackOverflow username>. "inserting characters at the start
  and end of a string." StackOverflow,
  https://stackoverflow.com/questions/10059554/
  inserting-characters-at-the-start-and-end-of-a-string.
+
+RapidTables.com Contributors. "Decimal to Binary converter." 
+ RapidTables.com,
+ https://www.rapidtables.com/convert/number/decimal-to-binary.html.
 
 Shah, Nirmi. "What does the if __name__ == “__main__”: do?" GeeksForGeeks,
  https://www.geeksforgeeks.org/what-does-the-if-__name__-__main__-do/.
