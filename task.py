@@ -39,13 +39,14 @@ def my_datetime(num_sec):
     if leap_year_counter == 0:
         days_in_months[1] = 29
 
-    for month in days_in_months:
-        days = days - days_in_months[month]
-        month_counter += 1 
+    if days > 30:
+        for month in days_in_months:
+            days = days - month
+            month_counter += 1 
 
-        # break loop if we hit last month
-        if days < 31:
-            break
+            # break loop if we hit last month
+            if days < 31:
+                break
     
     # testing output
     print("Months to add =" + str(month_counter))
@@ -67,12 +68,16 @@ def my_datetime(num_sec):
 
     if final_day > 1 and final_day < 10:
         string_day = "0" + str(final_day)
+    else:
+        string_day = str(final_day)
     
     if final_month > 1 and final_month < 10:
         string_month = "0" + str(final_month)
+    else:
+        string_month = str(final_month)
     
     return "Final, formatted date: " + string_month + "-" + string_day + "-" + string_year 
 
 # basic input testing
-print(my_datetime(0))
+#print(my_datetime(0))
 print(my_datetime(123456789))
