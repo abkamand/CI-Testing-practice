@@ -18,6 +18,7 @@ def my_datetime(num_sec):
     normal_year_days = 365
     leap_year_days = 366
 
+    # convert days to years, store in year_counter
     while (days > 365):
         if leap_year_counter == 4:
             days = days - leap_year_days
@@ -27,3 +28,30 @@ def my_datetime(num_sec):
             days = days - normal_year_days
             year_counter += 1
             leap_year_counter += 1
+
+    # convert leftover days to months, store in month_counter
+    while (days < 365 and days > 30):
+        # if we landed on a leap year, set 2nd element in days_in_months to 29
+        if leap_year_counter == 0:
+            days_in_months[1] = 29
+
+        for month in days_in_months:
+           days = days - days_in_months[month]
+           month_counter += 1 
+    
+    # we now have our years to add, our months to add, all that remain are days
+    # add our counters to our start variables for days, months, years
+    final_day = start_day + days
+    final_month = start_month + month_counter
+    final_year = start_year + year_counter
+
+    # convert our integers into MM-DD-YYYY string format
+    string_day = ""
+    string_month = ""
+    string_year = str(final_year)
+
+    if final_day > 1 and final_day < 10:
+        string_day = "0" + str(final_day)
+    
+    if final_month > 1 and final_month < 10:
+        string_month = "0" + str(final_month)
