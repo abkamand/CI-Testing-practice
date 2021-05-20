@@ -90,8 +90,8 @@ def convert_bin_to_hex(number):
 
     result = number
 
-    if number == 0:
-        return "0"
+    if number == "0":
+        return "00"
 
     if number[0] != "-":
 
@@ -114,8 +114,11 @@ def convert_bin_to_hex(number):
             elif not firstNybble and len(result) > 0:
                 firstNybble = True
                 bitString = " " + hexadecimalDigit + bitString
+            else:
+                bitString = hexadecimalDigit + bitString
 
-            if not firstNybble and len(result) == 0:
+            if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
+                theNumber = len(bitString) % 3 - 2
                 # We're at the last byte and need to pad
                 bitString = "0" + bitString
 
@@ -141,8 +144,11 @@ def convert_bin_to_hex(number):
             elif not firstNybble and len(result) > 0:
                 firstNybble = True
                 bitString = " " + hexadecimalDigit + bitString
+            else:
+                bitString = hexadecimalDigit + bitString
 
-            if not firstNybble and len(result) == 0:
+            if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
+                theNumber = len(bitString) % 3 - 2
                 # We're at the last byte and need to pad
                 bitString = "0" + bitString
 
@@ -195,7 +201,7 @@ def conv_endian(num, endian="big"):
 
 
 def main():
-    print(conv_endian(-954786, "little"))
+    print(conv_endian(954786, "little"))
     breakme = 1
 
 
