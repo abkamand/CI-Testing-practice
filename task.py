@@ -123,37 +123,65 @@ def convert_bin_to_hex(number):
                 bitString = "0" + bitString
 
     else:
-        firstNybble = True
-        # Slice off the negative sign
-        result = result[1:len(result) + 1]
+        bitString = convert_bin_to_hex_negative(result)
 
-        while len(result) > 0:
-            curNybble = result[len(result) - 4:(len(result) + 1)]
+    return bitString
 
-            # CITATION: See Wikipedia Contributors, Byers,
-            # Mishra (Gullu) Works Cited
-            hexadecimalDigit = bitDictionary.get(curNybble)
 
-            # Slice this nybble off the result
-            result = result[0:len(result) - 4]
+def convert_bin_to_hex_negative(result):
+    # CITATION: See Kumar, Mishra (Gullu), Works Cited at end
+    bitDictionary = {
+        "0000": "0",
+        "0001": "1",
+        "0010": "2",
+        "0011": "3",
+        "0100": "4",
+        "0101": "5",
+        "0110": "6",
+        "0111": "7",
+        "1000": "8",
+        "1001": "9",
+        "1010": "A",
+        "1011": "B",
+        "1100": "C",
+        "1101": "D",
+        "1110": "E",
+        "1111": "F"
+    }
 
-            # CITATION: See PyCharm Contributors, Works Cited at end
-            if firstNybble:
-                firstNybble = False
-                bitString = hexadecimalDigit + bitString
-            elif not firstNybble and len(result) > 0:
-                firstNybble = True
-                bitString = " " + hexadecimalDigit + bitString
-            else:
-                bitString = hexadecimalDigit + bitString
+    bitString = ""
 
-            if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
-                # theNumber = len(bitString) % 3 - 2
-                # We're at the last byte and need to pad
-                bitString = "0" + bitString
+    firstNybble = True
+    # Slice off the negative sign
+    result = result[1:len(result) + 1]
 
-        # Just need to prepend the negative sign now
-        bitString = "-" + bitString
+    while len(result) > 0:
+        curNybble = result[len(result) - 4:(len(result) + 1)]
+
+        # CITATION: See Wikipedia Contributors, Byers,
+        # Mishra (Gullu) Works Cited
+        hexadecimalDigit = bitDictionary.get(curNybble)
+
+        # Slice this nybble off the result
+        result = result[0:len(result) - 4]
+
+        # CITATION: See PyCharm Contributors, Works Cited at end
+        if firstNybble:
+            firstNybble = False
+            bitString = hexadecimalDigit + bitString
+        elif not firstNybble and len(result) > 0:
+            firstNybble = True
+            bitString = " " + hexadecimalDigit + bitString
+        else:
+            bitString = hexadecimalDigit + bitString
+
+        if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
+            # theNumber = len(bitString) % 3 - 2
+            # We're at the last byte and need to pad
+            bitString = "0" + bitString
+
+    # Just need to prepend the negative sign now
+    bitString = "-" + bitString
 
     return bitString
 
