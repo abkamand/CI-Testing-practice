@@ -2,6 +2,7 @@ import unittest
 import random
 from task import *
 
+
 class TestCase(unittest.TestCase):
 
     def test1(self):
@@ -10,13 +11,13 @@ class TestCase(unittest.TestCase):
     def test_endian_null(self):
         self.assertEqual("00", conv_endian(0, "big"))
 
+
 def hexify(num, endian_type):
     numInHex = hex(num)
 
     hexString = str(numInHex)
 
     cleanString = ""
-
 
     if endian_type == 0:
         if hexString[0] != "-":
@@ -26,7 +27,8 @@ def hexify(num, endian_type):
             while len(hexString) > 0:
 
                 if len(hexString) > 1:
-                    curNybble = hexString[len(hexString) - 2:len(hexString) + 1]
+                    curNybble = hexString[
+                                len(hexString) - 2:len(hexString) + 1]
                     hexString = hexString[0:len(hexString) - 2]
                     upperFirst = curNybble[0].upper()
                     upperSecond = curNybble[1].upper()
@@ -45,7 +47,8 @@ def hexify(num, endian_type):
             while len(hexString) > 0:
 
                 if len(hexString) > 1:
-                    curNybble = hexString[len(hexString) - 2:len(hexString) + 1]
+                    curNybble = hexString[
+                                len(hexString) - 2:len(hexString) + 1]
                     hexString = hexString[0:len(hexString) - 2]
                     upperFirst = curNybble[0].upper()
                     upperSecond = curNybble[1].upper()
@@ -163,6 +166,7 @@ def build_test(test_func, number):
                          "conv_endian returned {},"
                          " hexify returned {}".format(output, testOutput))
     return test
+
 
 def generate_endian_tests(self):
     # CITATION: See Python Docs Contributors, Works Cited at end
