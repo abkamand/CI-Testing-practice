@@ -151,6 +151,7 @@ def convert_bin_to_hex(number):
 
     return bitString
 
+
 def conv_endian(num, endian="big"):
 
     num = convert_bin_to_hex(convert_dec_to_bin(num))
