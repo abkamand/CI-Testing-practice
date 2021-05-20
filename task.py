@@ -151,9 +151,50 @@ def convert_bin_to_hex(number):
 
     return bitString
 
+def conv_endian(num, endian="big"):
+
+    num = convert_bin_to_hex(convert_dec_to_bin(num))
+
+    # If it's big, we're done
+    if endian == "big":
+        return num
+    elif endian == "little":
+        result = num
+        bitString = ""
+
+        if result[0] != "-":
+
+            while len(result) > 0:
+                curNybble = result[0:2]
+                bitString = curNybble + bitString
+                result = result[3:len(result) + 1]
+
+                if len(result) != 0:
+                    bitString = " " + bitString
+        else:
+            # Slice off the negative sign
+            result = result[1:len(result) + 1]
+
+            while len(result) > 0:
+                curNybble = result[0:2]
+                bitString = curNybble + bitString
+                result = result[3:len(result) + 1]
+
+                if len(result) != 0:
+                    bitString = " " + bitString
+
+            # Just need to prepend the negative sign now
+            bitString = "-" + bitString
+
+        return bitString
+    else:
+        # CITATION: See OSU Course Contributors, Works Cited at end
+        # Some invalid endianness was passed
+        return None
+
 
 def main():
-    print(convert_bin_to_hex(convert_dec_to_bin(-954786)))
+    print(conv_endian(-954786, "little"))
     breakme = 1
 
 
@@ -188,6 +229,10 @@ Kumar, Prashant <StackOverflow username>. "What is the Python equivalent
  for a case/switch statement? [duplicate]." StackOverflow.com,
  https://stackoverflow.com/questions/11479816/
  what-is-the-python-equivalent-for-a-case-switch-statement.
+
+OSU Course Contributors. "Group Project: Part 2." Canvas,
+ https://oregonstate.instructure.com/courses/1810943/
+ assignments/8334612?module_item_id=20728375.
 
 PyCharm Contributors. "Show quick fixes." PyCharm Software Feature,
 https://www.jetbrains.com/pycharm/.
