@@ -118,7 +118,7 @@ def convert_bin_to_hex(number):
                 bitString = hexadecimalDigit + bitString
 
             if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
-                theNumber = len(bitString) % 3 - 2
+                # theNumber = len(bitString) % 3 - 2
                 # We're at the last byte and need to pad
                 bitString = "0" + bitString
 
@@ -148,7 +148,7 @@ def convert_bin_to_hex(number):
                 bitString = hexadecimalDigit + bitString
 
             if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
-                theNumber = len(bitString) % 3 - 2
+                # theNumber = len(bitString) % 3 - 2
                 # We're at the last byte and need to pad
                 bitString = "0" + bitString
 
@@ -202,7 +202,7 @@ def conv_endian(num, endian="big"):
 
 def main():
     print(conv_endian(954786, "little"))
-    breakme = 1
+    # breakme = 1
 
 
 # CITATION: See Shah, Works Cited at end
