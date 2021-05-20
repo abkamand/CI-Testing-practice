@@ -36,7 +36,7 @@ def my_datetime(num_sec):
     #while (days < 365 and days > 30):
     
     # if we landed on a leap year, set 2nd element in days_in_months to 29
-    if leap_year_counter == 0:
+    if leap_year_counter == 4:
         days_in_months[1] = 29
 
     if days > 30:
