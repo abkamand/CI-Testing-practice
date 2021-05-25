@@ -38,11 +38,16 @@ def my_datetime(num_sec):
 
     for month in days_months:
         # break loop if we hit last month
-        if days <= month:
+        if days < month:
             break
         else:
             days = days - month
             current_month += 1
+
+    # account for landing on january 1st edge case
+    if current_month == 13:
+        current_month = 1
+        current_year += 1
 
     # finally, get our current_day
     current_day = days + 1
@@ -52,15 +57,15 @@ def my_datetime(num_sec):
     string_month = ""
     string_year = str(current_year)
 
-    if current_day > 1 and current_day < 10:
+    if current_day >= 1 and current_day < 10:
         string_day = "0" + str(current_day)
     else:
         string_day = str(current_day)
 
-    if current_month > 1 and current_month < 10:
+    if current_month >= 1 and current_month < 10:
         string_month = "0" + str(current_month)
     else:
         string_month = str(current_month)
 
-    return ("Final, formatted date: " + string_month + "-" +
+    return (string_month + "-" +
             string_day + "-" + string_year)
