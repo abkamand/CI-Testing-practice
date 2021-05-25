@@ -21,13 +21,13 @@ def func2_comp(num):
 class TestCase(unittest.TestCase):
     def test1(self):
         self.assertTrue(True)
-    
+
     # random testing function 2
     def func2_random_test(self):
         for i in range(0, 100000):
             num = random.randint(0, 32535143990)
             func2_comp(num)
-           
+
 
 if __name__ == '__main__':
     unittest.main()
