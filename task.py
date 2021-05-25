@@ -126,7 +126,7 @@ def conv_num(num_str):
     else:
         return -number
 
-      
+
 # ------------------------ THIS IS FUNCTION 2 ---------------------------
 def convert_dec_to_bin(number):
     # CITATION: See Brennan, Works Cited at end
