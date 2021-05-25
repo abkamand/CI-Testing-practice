@@ -88,81 +88,103 @@ def parse_hex_little_endian(num):
     clean_string = ""
 
     if hex_string[0] != "-":
-
-        hex_string = hex_string[2:len(hex_string) + 1]
-
-        while len(hex_string) > 0:
-
-            if len(hex_string) > 1:
-                cur_nybble = hex_string[
-                            len(hex_string) - 2:len(hex_string) + 1]
-                hex_string = hex_string[0:len(hex_string) - 2]
-                upper_first = cur_nybble[0].upper()
-                upper_second = cur_nybble[1].upper()
-            else:
-                upper_first = "0"
-                upper_second = hex_string[0].upper()
-                hex_string = ""
-
-            clean_string = upper_first + upper_second + clean_string
-
-            if len(hex_string) > 0:
-                clean_string = " " + clean_string
+        clean_string = parse_hex_little_endian_positive(hex_string)
     else:
-        hex_string = hex_string[3:len(hex_string) + 1]
-
-        while len(hex_string) > 0:
-
-            if len(hex_string) > 1:
-                cur_nybble = hex_string[
-                            len(hex_string) - 2:len(hex_string) + 1]
-                hex_string = hex_string[0:len(hex_string) - 2]
-                upper_first = cur_nybble[0].upper()
-                upper_second = cur_nybble[1].upper()
-            else:
-                upper_first = "0"
-                upper_second = hex_string[0].upper()
-                hex_string = ""
-
-            clean_string = upper_first + upper_second + clean_string
-
-            if len(hex_string) > 0:
-                clean_string = " " + clean_string
-
-        # Just need to prepend the negative sign now
-        clean_string = "-" + clean_string
+        clean_string = parse_hex_little_endian_negative(hex_string)
 
     result = clean_string
     bit_string = ""
 
     if result[0] != "-":
-
-        while len(result) > 0:
-            cur_nybble = result[0:2]
-            bit_string = cur_nybble + bit_string
-            result = result[3:len(result) + 1]
-
-            if len(result) != 0:
-                bit_string = " " + bit_string
+        bit_string = reverse_byte_order_positive(result)
     else:
-        # Slice off the negative sign
-        result = result[1:len(result) + 1]
-
-        while len(result) > 0:
-            cur_nybble = result[0:2]
-            bit_string = cur_nybble + bit_string
-            result = result[3:len(result) + 1]
-
-            if len(result) != 0:
-                bit_string = " " + bit_string
-
-        # Just need to prepend the negative sign now
-        bit_string = "-" + bit_string
-
+        bit_string = reverse_byte_order_negative(result)
     # Set the string to the reversed string
     clean_string = bit_string
 
     return clean_string
+
+
+def parse_hex_little_endian_positive(hex_string):
+    hex_string = hex_string[2:len(hex_string) + 1]
+    clean_string = ""
+
+    while len(hex_string) > 0:
+
+        if len(hex_string) > 1:
+            cur_nybble = hex_string[
+                         len(hex_string) - 2:len(hex_string) + 1]
+            hex_string = hex_string[0:len(hex_string) - 2]
+            upper_first = cur_nybble[0].upper()
+            upper_second = cur_nybble[1].upper()
+        else:
+            upper_first = "0"
+            upper_second = hex_string[0].upper()
+            hex_string = ""
+
+        clean_string = upper_first + upper_second + clean_string
+
+        if len(hex_string) > 0:
+            clean_string = " " + clean_string
+    return clean_string
+
+
+def parse_hex_little_endian_negative(hex_string):
+    hex_string = hex_string[3:len(hex_string) + 1]
+    clean_string = ""
+    while len(hex_string) > 0:
+
+        if len(hex_string) > 1:
+            cur_nybble = hex_string[
+                         len(hex_string) - 2:len(hex_string) + 1]
+            hex_string = hex_string[0:len(hex_string) - 2]
+            upper_first = cur_nybble[0].upper()
+            upper_second = cur_nybble[1].upper()
+        else:
+            upper_first = "0"
+            upper_second = hex_string[0].upper()
+            hex_string = ""
+
+        clean_string = upper_first + upper_second + clean_string
+
+        if len(hex_string) > 0:
+            clean_string = " " + clean_string
+
+    # Just need to prepend the negative sign now
+    clean_string = "-" + clean_string
+    return clean_string
+
+
+def reverse_byte_order_positive(result):
+    bit_string = ""
+    while len(result) > 0:
+        cur_nybble = result[0:2]
+        bit_string = cur_nybble + bit_string
+        result = result[3:len(result) + 1]
+
+        if len(result) != 0:
+            bit_string = " " + bit_string
+
+    return bit_string
+
+
+def reverse_byte_order_negative(result):
+    bit_string = ""
+
+    # Slice off the negative sign
+    result = result[1:len(result) + 1]
+
+    while len(result) > 0:
+        cur_nybble = result[0:2]
+        bit_string = cur_nybble + bit_string
+        result = result[3:len(result) + 1]
+
+        if len(result) != 0:
+            bit_string = " " + bit_string
+
+    # Just need to prepend the negative sign now
+    bit_string = "-" + bit_string
+    return bit_string
 
 
 # CITATION: See OSU Course Contributors, Helmsworth, Works Cited at end
