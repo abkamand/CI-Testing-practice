@@ -2,17 +2,25 @@ import unittest
 import random
 from task import conv_endian
 
+# CITATION: Refactoring and other IDE features
+# provided by PyCharm Contributors. Linting assessments provided by
+# Bryukhanov (PEP8Online.com) Works Cited at end
+
 
 class TestCase(unittest.TestCase):
+    """This class is used to run unit tests on task.py"""
 
     def test1(self):
+        """This is the base test, used to validate test suite is working."""
         self.assertTrue(True)
 
     def test_endian_null(self):
+        """Testing that conv_endian handles 0 correctly."""
         self.assertEqual("00", conv_endian(0, "big"))
 
 
 def hexify(num, endian_type):
+    """Converts a number in hex to a string"""
     if endian_type == 0:
         clean_string = parse_hex_big_endian(num)
     elif endian_type == 1:
@@ -25,6 +33,7 @@ def hexify(num, endian_type):
 
 # CITATION: See Google Dictionary, Works Cited at end
 def parse_hex_big_endian(num):
+    """Parses a hex value into a string, using big-endian byte order"""
     num_in_hex = hex(num)
 
     hex_string = str(num_in_hex)
@@ -81,6 +90,7 @@ def parse_hex_big_endian(num):
 
 # CITATION: See Google Dictionary, Works Cited at end
 def parse_hex_little_endian(num):
+    """Parses a hex value into a string, using little-endian byte order"""
     num_in_hex = hex(num)
 
     hex_string = str(num_in_hex)
@@ -106,6 +116,8 @@ def parse_hex_little_endian(num):
 
 
 def parse_hex_little_endian_positive(hex_string):
+    """Parses a hex string of a positive number into a string in
+    little-endian byte order"""
     hex_string = hex_string[2:len(hex_string) + 1]
     clean_string = ""
 
@@ -130,6 +142,8 @@ def parse_hex_little_endian_positive(hex_string):
 
 
 def parse_hex_little_endian_negative(hex_string):
+    """Parses a hex string of a negative number into a string in
+        little-endian byte order"""
     hex_string = hex_string[3:len(hex_string) + 1]
     clean_string = ""
     while len(hex_string) > 0:
@@ -156,6 +170,7 @@ def parse_hex_little_endian_negative(hex_string):
 
 
 def reverse_byte_order_positive(result):
+    """Reverses the byte order of a positive hex string."""
     bit_string = ""
     while len(result) > 0:
         cur_nybble = result[0:2]
@@ -169,6 +184,7 @@ def reverse_byte_order_positive(result):
 
 
 def reverse_byte_order_negative(result):
+    """Reverses the byte order of a negative hex string."""
     bit_string = ""
 
     # Slice off the negative sign
@@ -190,7 +206,10 @@ def reverse_byte_order_negative(result):
 # CITATION: See OSU Course Contributors, Helmsworth, Works Cited at end
 # CITATION: See Stevenson-Molnar, Works Cited at end
 def build_test(test_func, number):
+    """Builds tests for random testing."""
     def test(self):
+        """This is the function that will be returned by
+        the test builder function"""
         # Pick an endian type
         endian_type = random.randrange(0, 3)
         test_output = hexify(number, endian_type)
@@ -211,6 +230,7 @@ def build_test(test_func, number):
 
 
 def generate_endian_tests(self):
+    """Generates a series of random tests for function3"""
     # CITATION: See Python Docs Contributors, Works Cited at end
     # Generate a number of tests equal to the range set below
     for x in range(10000):
@@ -233,6 +253,9 @@ if __name__ == '__main__':
 
 """
 WORKS CITED
+Bryukhanov, Valentin. "PEP8 Online." Pep8Online.com,
+http://pep8online.com/.
+
 Helmsworth, Andrew (self). "random_cc." Github.com,
 https://github.com/andershelmsworth/random_cc.
 
