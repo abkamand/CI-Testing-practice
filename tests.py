@@ -10,7 +10,7 @@ def refrm(s):
     return s2
 
 
-def test_func(num):
+def func2_comp(num):
     if (my_datetime(num) != refrm
        (str(datetime.datetime.utcfromtimestamp(num)))):
         print("My: ", my_datetime(num), " != ", refrm(
@@ -19,10 +19,10 @@ def test_func(num):
 
 
 class TestCase(unittest.TestCase):
-    def test1(self):
+    def func2_random_test(self):
         for i in range(0, 100000):
             num = random.randint(0, 32535143990)
-            test_func(num)
+            func2_comp(num)
 
 
 if __name__ == '__main__':
