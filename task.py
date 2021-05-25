@@ -126,7 +126,7 @@ def conv_num(num_str):
     else:
         return -number
 
-      
+
 # ------------------- FUNCTION 2 -----------------------
 def my_datetime(num_sec):
     # convert seconds to days, 86400 seconds in a day
@@ -200,7 +200,7 @@ def my_datetime(num_sec):
     return (string_month + "-" +
             string_day + "-" + string_year)
 
-  
+
 # ------------------------ FUNCTION 3 ---------------------------
 def convert_dec_to_bin(number):
     # CITATION: See Brennan, Works Cited at end
