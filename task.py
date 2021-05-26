@@ -123,11 +123,8 @@ def conv_num(num_str):
     elif num_type == 'HEX':
         number = process_hex(num_str)
 
-    if number is None:
-        return None
-
-    if not positive:
-        number = - number
+    if number is not None and not positive:
+        number = -number
 
     return number
 
