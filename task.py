@@ -128,68 +128,71 @@ def conv_num(num_str):
 
 
 # ------------------------ THIS IS FUNCTION 2 ---------------------------
+# CITATION: See PyCharm Contributors, Works Cited at end
 def convert_dec_to_bin(number):
     # CITATION: See Brennan, Works Cited at end
-    binaryString = ""
+    binary_string = ""
 
     result = number
 
     if number == 0:
         # If it's zero, we're done.
-        binaryString = "0"
+        binary_string = "0"
     elif number > 0:
         while result != 0:
-            # CITATION: See Agrawal (Division Operators...), Works Cited at end
-            newResult = result // 2
+            # CITATION: See Agrawal (Division Operators...),
+            # Works Cited at end
+            new_result = result // 2
             remainder = result % 2
-            result = newResult
-            stringRemainder = ""
+            result = new_result
+            string_remainder = ""
 
             if remainder == 0:
-                stringRemainder = "0"
+                string_remainder = "0"
             else:
-                stringRemainder = "1"
+                string_remainder = "1"
 
             # CITATION: See Byers, Works Cited at end
-            binaryString = stringRemainder + binaryString
+            binary_string = string_remainder + binary_string
 
         # CITATION: See Wikipedia Contributors, Works Cited at end
         # Pad the nybble if needed
-        while len(binaryString) % 4 != 0:
-            binaryString = "0" + binaryString
+        while len(binary_string) % 4 != 0:
+            binary_string = "0" + binary_string
 
     elif number < 0:
 
         # Get the positive version
-        positiveNumber = 0 - number
-        result = positiveNumber
+        positive_number = 0 - number
+        result = positive_number
 
         # Do the same calcs as above for the positive version
         while result != 0:
-            # CITATION: See Agrawal (Division Operators...), Works Cited at end
-            newResult = result // 2
+            # CITATION: See Agrawal (Division Operators...),
+            # Works Cited at end
+            new_result = result // 2
             remainder = result % 2
-            result = newResult
-            stringRemainder = ""
+            result = new_result
+            string_remainder = ""
 
             if remainder == 0:
-                stringRemainder = "0"
+                string_remainder = "0"
             else:
-                stringRemainder = "1"
+                string_remainder = "1"
 
             # CITATION: See Byers, Works Cited at end
-            binaryString = stringRemainder + binaryString
+            binary_string = string_remainder + binary_string
 
         # CITATION: See Wikipedia Contributors, Works Cited at end
         # Pad the nybble if needed
-        while len(binaryString) % 4 != 0:
-            binaryString = "0" + binaryString
+        while len(binary_string) % 4 != 0:
+            binary_string = "0" + binary_string
 
         # CITATION: See RapidTables.com Contributors, Works Cited at end
         # Now we just need to prepend the negative sign
-        binaryString = "-" + binaryString
+        binary_string = "-" + binary_string
 
-    return binaryString
+    return binary_string
 
 
 def convert_bin_to_hex(number):
@@ -197,7 +200,7 @@ def convert_bin_to_hex(number):
     # Works Cited at end
 
     # CITATION: See Kumar, Mishra (Gullu), Works Cited at end
-    bitDictionary = {
+    bit_dictionary = {
         "0000": "0",
         "0001": "1",
         "0010": "2",
@@ -216,7 +219,7 @@ def convert_bin_to_hex(number):
         "1111": "F"
     }
 
-    bitString = ""
+    bit_string = ""
 
     result = number
 
@@ -225,42 +228,41 @@ def convert_bin_to_hex(number):
 
     if number[0] != "-":
 
-        firstNybble = True
+        first_nybble = True
 
         while len(result) > 0:
-            curNybble = result[len(result) - 4:(len(result) + 1)]
+            cur_nybble = result[len(result) - 4:(len(result) + 1)]
 
             # CITATION: See Wikipedia Contributors, Byers,
             # Mishra (Gullu) Works Cited
-            hexadecimalDigit = bitDictionary.get(curNybble)
+            hexadecimal_digit = bit_dictionary.get(cur_nybble)
 
             # Slice this nybble off the result
             result = result[0:len(result) - 4]
 
             # CITATION: See PyCharm Contributors, Works Cited at end
-            if firstNybble:
-                firstNybble = False
-                bitString = hexadecimalDigit + bitString
-            elif not firstNybble and len(result) > 0:
-                firstNybble = True
-                bitString = " " + hexadecimalDigit + bitString
+            if first_nybble:
+                first_nybble = False
+                bit_string = hexadecimal_digit + bit_string
+            elif not first_nybble and len(result) > 0:
+                first_nybble = True
+                bit_string = " " + hexadecimal_digit + bit_string
             else:
-                bitString = hexadecimalDigit + bitString
+                bit_string = hexadecimal_digit + bit_string
 
-            if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
-                # theNumber = len(bitString) % 3 - 2
+            if len(result) == 0 and (len(bit_string) % 3) - 2 != 0:
                 # We're at the last byte and need to pad
-                bitString = "0" + bitString
+                bit_string = "0" + bit_string
 
     else:
-        bitString = convert_bin_to_hex_negative(result)
+        bit_string = convert_bin_to_hex_negative(result)
 
-    return bitString
+    return bit_string
 
 
 def convert_bin_to_hex_negative(result):
     # CITATION: See Kumar, Mishra (Gullu), Works Cited at end
-    bitDictionary = {
+    bit_dictionary = {
         "0000": "0",
         "0001": "1",
         "0010": "2",
@@ -279,41 +281,41 @@ def convert_bin_to_hex_negative(result):
         "1111": "F"
     }
 
-    bitString = ""
+    bit_string = ""
 
-    firstNybble = True
+    first_nybble = True
     # Slice off the negative sign
     result = result[1:len(result) + 1]
 
     while len(result) > 0:
-        curNybble = result[len(result) - 4:(len(result) + 1)]
+        cur_nybble = result[len(result) - 4:(len(result) + 1)]
 
         # CITATION: See Wikipedia Contributors, Byers,
         # Mishra (Gullu) Works Cited
-        hexadecimalDigit = bitDictionary.get(curNybble)
+        hexadecimal_digit = bit_dictionary.get(cur_nybble)
 
         # Slice this nybble off the result
         result = result[0:len(result) - 4]
 
         # CITATION: See PyCharm Contributors, Works Cited at end
-        if firstNybble:
-            firstNybble = False
-            bitString = hexadecimalDigit + bitString
-        elif not firstNybble and len(result) > 0:
-            firstNybble = True
-            bitString = " " + hexadecimalDigit + bitString
+        if first_nybble:
+            first_nybble = False
+            bit_string = hexadecimal_digit + bit_string
+        elif not first_nybble and len(result) > 0:
+            first_nybble = True
+            bit_string = " " + hexadecimal_digit + bit_string
         else:
-            bitString = hexadecimalDigit + bitString
+            bit_string = hexadecimal_digit + bit_string
 
-        if len(result) == 0 and (len(bitString) % 3) - 2 != 0:
-            # theNumber = len(bitString) % 3 - 2
+        if len(result) == 0 and (len(bit_string) % 3) - 2 != 0:
+            # theNumber = len(bit_string) % 3 - 2
             # We're at the last byte and need to pad
-            bitString = "0" + bitString
+            bit_string = "0" + bit_string
 
     # Just need to prepend the negative sign now
-    bitString = "-" + bitString
+    bit_string = "-" + bit_string
 
-    return bitString
+    return bit_string
 
 
 def conv_endian(num, endian="big"):
@@ -325,33 +327,33 @@ def conv_endian(num, endian="big"):
         return num
     elif endian == "little":
         result = num
-        bitString = ""
+        bit_string = ""
 
         if result[0] != "-":
 
             while len(result) > 0:
-                curNybble = result[0:2]
-                bitString = curNybble + bitString
+                cur_nybble = result[0:2]
+                bit_string = cur_nybble + bit_string
                 result = result[3:len(result) + 1]
 
                 if len(result) != 0:
-                    bitString = " " + bitString
+                    bit_string = " " + bit_string
         else:
             # Slice off the negative sign
             result = result[1:len(result) + 1]
 
             while len(result) > 0:
-                curNybble = result[0:2]
-                bitString = curNybble + bitString
+                cur_nybble = result[0:2]
+                bit_string = cur_nybble + bit_string
                 result = result[3:len(result) + 1]
 
                 if len(result) != 0:
-                    bitString = " " + bitString
+                    bit_string = " " + bit_string
 
             # Just need to prepend the negative sign now
-            bitString = "-" + bitString
+            bit_string = "-" + bit_string
 
-        return bitString
+        return bit_string
     else:
         # CITATION: See OSU Course Contributors, Works Cited at end
         # Some invalid endianness was passed
