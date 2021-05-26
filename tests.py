@@ -283,6 +283,7 @@ class TestCase(unittest.TestCase):
 
 # ------------------------ Function 1 Random Testing ---------------------------
 
+
 def create_int_str(str_len):
     int_str = ''
 

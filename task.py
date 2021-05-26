@@ -126,10 +126,10 @@ def conv_num(num_str):
     if number is None:
         return None
 
-    if positive:
-        return number
-    else:
-        return -number
+    if not positive:
+        number = - number
+
+    return number
 
 
 # ------------------------ THIS IS FUNCTION 3 ---------------------------
