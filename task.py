@@ -65,6 +65,8 @@ def process_float(num_str):
         number += digit * place
         place *= .1
 
+    places = len(after_decimal)
+    number = round(number, places)
     return number
 
 
@@ -77,7 +79,7 @@ def process_hex(num_str):
         elif char in UPPER_CASE_HEX_ALPHAS:
             digit = ord(char) - 55
         elif char in LOWER_CASE_HEX_ALPHAS:
-            digit = - 87
+            digit = ord(char) - 87
         else:
             return None
 
@@ -121,13 +123,16 @@ def conv_num(num_str):
     elif num_type == 'HEX':
         number = process_hex(num_str)
 
+    if number is None:
+        return None
+
     if positive:
         return number
     else:
         return -number
 
 
-# ------------------------ THIS IS FUNCTION 2 ---------------------------
+# ------------------------ THIS IS FUNCTION 3 ---------------------------
 # CITATION: See PyCharm Contributors, Works Cited at end
 def convert_dec_to_bin(number):
     # CITATION: See Brennan, Works Cited at end

@@ -1,6 +1,8 @@
 import unittest
 import random
+from task import conv_num
 from task import conv_endian
+
 
 # CITATION: Refactoring and other IDE features
 # provided by PyCharm Contributors. Linting assessments provided by
@@ -14,10 +16,364 @@ class TestCase(unittest.TestCase):
         """This is the base test, used to validate test suite is working."""
         self.assertTrue(True)
 
+    # ------------------------ Function 1 Tests ---------------------------
+    #-----Integer Tests-----
+    def test1_func1(self):
+        self.assertEqual(1, conv_num('1'))
+
+    def test2_func1(self):
+        self.assertEqual(-1, conv_num('-1'))
+
+    def test3_func1(self):
+        self.assertEqual(0, conv_num('0'))
+
+    def test4_func1(self):
+        self.assertEqual(None, conv_num('A55'))
+
+    def test5_func1(self):
+        self.assertEqual(None, conv_num('5A5'))
+
+    def test6_func1(self):
+        self.assertEqual(None, conv_num('55A'))
+
+    def test7_func1(self):
+        self.assertEqual(None, conv_num('Z55'))
+
+    def test8_func1(self):
+        self.assertEqual(None, conv_num('5Z5'))
+
+    def test9_func1(self):
+        self.assertEqual(None, conv_num('55Z'))
+
+    def test10_func1(self):
+        self.assertEqual(None, conv_num('!55'))
+
+    def test11_func1(self):
+        self.assertEqual(None, conv_num('5!5'))
+
+    def test12_func1(self):
+        self.assertEqual(None, conv_num('55!'))
+
+    def test13_func1(self):
+        self.assertEqual(55, conv_num('055'))
+
+    def test14_func1(self):
+        self.assertEqual(505, conv_num('505'))
+
+    def test15_func1(self):
+        self.assertEqual(550, conv_num('550'))
+
+    def test16_func1(self):
+        self.assertEqual(None, conv_num('-A55'))
+
+    def test17_func1(self):
+        self.assertEqual(None, conv_num('-5A5'))
+
+    def test18_func1(self):
+        self.assertEqual(None, conv_num('-55A'))
+
+    def test19_func1(self):
+        self.assertEqual(None, conv_num('-Z55'))
+
+    def test20_func1(self):
+        self.assertEqual(None, conv_num('-5Z5'))
+
+    def test21_func1(self):
+        self.assertEqual(None, conv_num('-55Z'))
+
+    def test22_func1(self):
+        self.assertEqual(None, conv_num('-!55'))
+
+    def test23_func1(self):
+        self.assertEqual(None, conv_num('-5!5'))
+
+    def test24_func1(self):
+        self.assertEqual(None, conv_num('-55!'))
+
+    def test25_func1(self):
+        self.assertEqual(-55, conv_num('-055'))
+
+    def test26_func1(self):
+        self.assertEqual(-505, conv_num('-505'))
+
+    def test27_func1(self):
+        self.assertEqual(-550, conv_num('-550'))
+
+    #-----Float Tests-----
+
+    def test28_func1(self):
+        self.assertEqual(5.5, conv_num('5.5'))
+
+    def test29_func1(self):
+        self.assertEqual(-5.5, conv_num('-5.5'))
+
+    def test30_func1(self):
+        self.assertEqual(0.0, conv_num('0.0'))
+
+    def test31_func1(self):
+        self.assertEqual(0.0, conv_num('0.'))
+
+    def test32_func1(self):
+        self.assertEqual(None, conv_num('.5.'))
+
+    def test33_func1(self):
+        self.assertEqual(None, conv_num('.5.5'))
+
+    def test34_func1(self):
+        self.assertEqual(None, conv_num('.5.5.'))
+
+    def test35_func1(self):
+        self.assertEqual(None, conv_num('5.5.'))
+
+    def test36_func1(self):
+        self.assertEqual(None, conv_num('5.5.'))
+
+    def test37_func1(self):
+        self.assertEqual(None, conv_num('5.5.5'))
+
+    def test38_func1(self):
+        self.assertEqual(None, conv_num('A5.55'))
+
+    def test39_func1(self):
+        self.assertEqual(None, conv_num('5A5.5'))
+
+    def test40_func1(self):
+        self.assertEqual(None, conv_num('55.5A'))
+
+    def test41_func1(self):
+        self.assertEqual(None, conv_num('Z55.5'))
+
+    def test42_func1(self):
+        self.assertEqual(None, conv_num('5Z5.5'))
+
+    def test43_func1(self):
+        self.assertEqual(None, conv_num('55.5Z'))
+
+    def test44_func1(self):
+        self.assertEqual(None, conv_num('!55.5'))
+
+    def test45_func1(self):
+        self.assertEqual(None, conv_num('55.5!'))
+
+    def test46_func1(self):
+        self.assertEqual(None, conv_num('55.!5'))
+
+    def test47_func1(self):
+        self.assertEqual(None, conv_num('-.5.'))
+
+    def test48_func1(self):
+        self.assertEqual(None, conv_num('-.5.5'))
+
+    def test49_func1(self):
+        self.assertEqual(None, conv_num('-.5.5.'))
+
+    def test50_func1(self):
+        self.assertEqual(None, conv_num('-5.5.'))
+
+    def test51_func1(self):
+        self.assertEqual(None, conv_num('-5.5.'))
+
+    def test52_func1(self):
+        self.assertEqual(None, conv_num('-5.5.5'))
+
+    def test53_func1(self):
+        self.assertEqual(None, conv_num('-A5.55'))
+
+    def test54_func1(self):
+        self.assertEqual(None, conv_num('-5A5.5'))
+
+    def test55_func1(self):
+        self.assertEqual(None, conv_num('-55.5A'))
+
+    def test56_func1(self):
+        self.assertEqual(None, conv_num('-Z55.5'))
+
+    def test57_func1(self):
+        self.assertEqual(None, conv_num('-5Z5.5'))
+
+    def test58_func1(self):
+        self.assertEqual(None, conv_num('-55.5Z'))
+
+    def test59_func1(self):
+        self.assertEqual(None, conv_num('-!55.5'))
+
+    def test60_func1(self):
+        self.assertEqual(None, conv_num('-55.5!'))
+
+    def test61_func1(self):
+        self.assertEqual(None, conv_num('-55.!5'))
+
+    def test62_func1(self):
+        self.assertEqual(0.55, conv_num('0.55'))
+
+    def test63_func1(self):
+        self.assertEqual(0.55, conv_num('0000.55'))
+
+    def test64_func1(self):
+        self.assertEqual(0.55, conv_num('0000.550000'))
+
+    def test65_func1(self):
+        self.assertEqual(0.55, conv_num('.550000'))
+
+    def test66_func1(self):
+        self.assertEqual(0.55, conv_num('.550'))
+
+    #-----Hex Tests-----
+    def test67_func1(self):
+        self.assertEqual(int("0xAD4", 16), conv_num('0xad4'))
+
+    def test68_func1(self):
+        self.assertEqual(int("-0xAD4", 16), conv_num('-0xad4'))
+
+    def test69_func1(self):
+        self.assertEqual(int("0xAD4", 16), conv_num('0XAD4'))
+
+    def test70_func1(self):
+        self.assertEqual(int("-0xAD4", 16), conv_num('-0XAD4'))
+
+    def test71_func1(self):
+        self.assertEqual(None, conv_num('0XAZ4'))
+
+    def test72_func1(self):
+        self.assertEqual(None, conv_num('0XAz4'))
+
+    def test73_func1(self):
+        self.assertEqual(None, conv_num('0XA.4'))
+
+    def test74_func1(self):
+        self.assertEqual(None, conv_num('0XA.4.4'))
+
+    def test75_func1(self):
+        self.assertEqual(None, conv_num('0XA.4!4'))
+
+    def test76_func1(self):
+        self.assertEqual(None, conv_num('-0XAZ4'))
+
+    def test77_func1(self):
+        self.assertEqual(None, conv_num('-0XAz4'))
+
+    def test78_func1(self):
+        self.assertEqual(None, conv_num('-0XA.4'))
+
+    def test79_func1(self):
+        self.assertEqual(None, conv_num('-0XA.4.4'))
+
+    def test80_func1(self):
+        self.assertEqual(None, conv_num('-0XA.4!4'))
+
+    def test81_func1(self):
+        self.assertEqual(int("0x0AD4", 16), conv_num('0x0AD4'))
+
+    def test82_func1(self):
+        self.assertEqual(int("0xAD40", 16), conv_num('0xAD40'))
+
+    #non-string input
+    def test83_func1(self):
+        self.assertEqual(None, conv_num(123))
+
+    #empty string
+    def test84_func1(self):
+        self.assertEqual(None, conv_num(""))
+
+
+
+    # ------------------------ Function 3 Tests ---------------------------
     def test_endian_null(self):
         """Testing that conv_endian handles 0 correctly."""
         self.assertEqual("00", conv_endian(0, "big"))
 
+# ------------------------ Function 1 Random Testing ---------------------------
+
+def create_int_str(str_len):
+    int_str = ''
+
+    pos_neg = random.randint(0,1)
+    if pos_neg == 1:
+        int_str += '-'
+
+    for i in range(str_len):
+        int_str += str(random.randint(0, 9))
+
+    return int_str
+
+def create_float_str(str_len):
+    float_str = ''
+    decimal_place = random.randint(0, str_len)
+
+    pos_neg = random.randint(0,1)
+    if pos_neg == 1:
+        float_str += '-'
+
+    for i in range(decimal_place):
+        float_str += str(random.randint(0, 9))
+
+    float_str += '.'
+
+    for i in range(str_len - decimal_place):
+        float_str += str(random.randint(0, 9))
+
+    return float_str
+
+def create_hex_str(str_len):
+    POSSIBLE_DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0','A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f']
+    hex_str = ''
+
+    pos_neg = random.randint(0,1)
+    if pos_neg == 1:
+        hex_str += '-'
+
+    upper_lower = random.randint(0,1)
+    if upper_lower == 0:
+        hex_str += '0x'
+    else:
+        hex_str += '0X'
+
+    for i in range(str_len):
+        random_digit = random.randint(0,21)
+        hex_str += POSSIBLE_DIGITS[random_digit]
+
+    return hex_str
+
+def build_conv_num_test(expected, test_case):
+    def test(self):
+        result = conv_num(test_case)
+        places = str(expected)[::-1].find('.')
+        if places == -1:
+            places = 4
+
+        self.assertAlmostEqual(expected, result, places)
+    return test
+
+def generate_conv_num_testcases():
+    for i in range(10000):
+        num_type = random.randint(0,2)
+
+        if num_type == 0:
+            num_type = 'INT'
+        elif num_type == 1:
+            num_type = 'FLOAT'
+        else:
+            num_type = 'HEX'
+
+        strlen = random.randint(1, 10)
+
+        if num_type == 'INT':
+            num_str = create_int_str(strlen)
+            expected = int(num_str)
+            new_test = build_conv_num_test(expected, num_str)
+        elif num_type == 'FLOAT':
+            num_str = create_float_str(strlen)
+            expected = float(num_str)
+            new_test = build_conv_num_test(expected, num_str)
+        else:
+            num_str = create_hex_str(strlen)
+            expected = int(num_str, 16)
+            new_test = build_conv_num_test(expected, num_str)
+
+        setattr(TestCase, 'test_{}'.format(num_str), new_test)
+
+
+# ------------------------ Function 3 Random Testing ---------------------------
 
 def hexify(num, endian_type):
     """Converts a number in hex to a string"""
@@ -205,7 +561,7 @@ def reverse_byte_order_negative(result):
 
 # CITATION: See OSU Course Contributors, Helmsworth, Works Cited at end
 # CITATION: See Stevenson-Molnar, Works Cited at end
-def build_test(test_func, number):
+def build_endian_test(test_func, number):
     """Builds tests for random testing."""
     def test(self):
         """This is the function that will be returned by
@@ -237,10 +593,10 @@ def generate_endian_tests(self):
         # CITATION: See ReadTheDocs Python Reference
         # Contributors, Works Cited at end -2147483648
         num = random.randrange(-2147483648, 2147483648)
-        print("Number for test{} was {}".format(x, num))
-        test = build_test(conv_endian, num)
+        #print("Number for test{} was {}".format(x, num))
+        test = build_endian_test(conv_endian, num)
         # CITATION: See OSU Course Contributors, Works Cited
-        setattr(self, "test_endian_{}".format(x), test)
+        setattr(TestCase, "test_endian_{}".format(x), test)
 
 
 # CITATION: See Shah, Works Cited at end
@@ -248,6 +604,7 @@ def generate_endian_tests(self):
 if __name__ == '__main__':
     # Seed the random
     random.seed()
+    generate_conv_num_testcases()
     generate_endian_tests(TestCase)
     unittest.main()
 
