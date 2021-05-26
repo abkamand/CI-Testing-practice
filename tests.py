@@ -17,7 +17,7 @@ class TestCase(unittest.TestCase):
         self.assertTrue(True)
 
     # ------------------------ Function 1 Tests ---------------------------
-    #-----Integer Tests-----
+    # -----Integer Tests-----
     def test1_func1(self):
         self.assertEqual(1, conv_num('1'))
 
@@ -99,7 +99,7 @@ class TestCase(unittest.TestCase):
     def test27_func1(self):
         self.assertEqual(-550, conv_num('-550'))
 
-    #-----Float Tests-----
+    # -----Float Tests-----
 
     def test28_func1(self):
         self.assertEqual(5.5, conv_num('5.5'))
@@ -218,7 +218,7 @@ class TestCase(unittest.TestCase):
     def test66_func1(self):
         self.assertEqual(0.55, conv_num('.550'))
 
-    #-----Hex Tests-----
+    # -----Hex Tests-----
     def test67_func1(self):
         self.assertEqual(int("0xAD4", 16), conv_num('0xad4'))
 
@@ -267,17 +267,16 @@ class TestCase(unittest.TestCase):
     def test82_func1(self):
         self.assertEqual(int("0xAD40", 16), conv_num('0xAD40'))
 
-    #non-string input
+    # non-string input
     def test83_func1(self):
         self.assertEqual(None, conv_num(123))
 
-    #empty string
+    # empty string
     def test84_func1(self):
         self.assertEqual(None, conv_num(""))
 
-
-
     # ------------------------ Function 3 Tests ---------------------------
+
     def test_endian_null(self):
         """Testing that conv_endian handles 0 correctly."""
         self.assertEqual("00", conv_endian(0, "big"))
@@ -287,7 +286,7 @@ class TestCase(unittest.TestCase):
 def create_int_str(str_len):
     int_str = ''
 
-    pos_neg = random.randint(0,1)
+    pos_neg = random.randint(0, 1)
     if pos_neg == 1:
         int_str += '-'
 
@@ -296,11 +295,12 @@ def create_int_str(str_len):
 
     return int_str
 
+
 def create_float_str(str_len):
     float_str = ''
     decimal_place = random.randint(0, str_len)
 
-    pos_neg = random.randint(0,1)
+    pos_neg = random.randint(0, 1)
     if pos_neg == 1:
         float_str += '-'
 
@@ -314,25 +314,28 @@ def create_float_str(str_len):
 
     return float_str
 
+
 def create_hex_str(str_len):
-    POSSIBLE_DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0','A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f']
+    POSSIBLE_DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+                       'A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f']
     hex_str = ''
 
-    pos_neg = random.randint(0,1)
+    pos_neg = random.randint(0, 1)
     if pos_neg == 1:
         hex_str += '-'
 
-    upper_lower = random.randint(0,1)
+    upper_lower = random.randint(0, 1)
     if upper_lower == 0:
         hex_str += '0x'
     else:
         hex_str += '0X'
 
     for i in range(str_len):
-        random_digit = random.randint(0,21)
+        random_digit = random.randint(0, 21)
         hex_str += POSSIBLE_DIGITS[random_digit]
 
     return hex_str
+
 
 def build_conv_num_test(expected, test_case):
     def test(self):
@@ -344,9 +347,10 @@ def build_conv_num_test(expected, test_case):
         self.assertAlmostEqual(expected, result, places)
     return test
 
+
 def generate_conv_num_testcases():
     for i in range(10000):
-        num_type = random.randint(0,2)
+        num_type = random.randint(0, 2)
 
         if num_type == 0:
             num_type = 'INT'
@@ -593,7 +597,7 @@ def generate_endian_tests(self):
         # CITATION: See ReadTheDocs Python Reference
         # Contributors, Works Cited at end -2147483648
         num = random.randrange(-2147483648, 2147483648)
-        #print("Number for test{} was {}".format(x, num))
+        # print("Number for test{} was {}".format(x, num))
         test = build_endian_test(conv_endian, num)
         # CITATION: See OSU Course Contributors, Works Cited
         setattr(TestCase, "test_endian_{}".format(x), test)
