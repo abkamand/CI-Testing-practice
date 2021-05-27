@@ -1,18 +1,39 @@
-import unittest
 import random
+import unittest
+import datetime
+from task import my_datetime
 from task import conv_endian
+
+
+def refrm(s):
+    """convert datetime output to match my_datetime format"""
+    s2 = s[5:10] + s[4] + s[0:4]
+    return s2
+
+
+def func2_comp(num):
+    if (my_datetime(num) != refrm
+       (str(datetime.datetime.utcfromtimestamp(num)))):
+        print("My: ", my_datetime(num), " != ", refrm(
+            str(datetime.datetime.utcfromtimestamp(num))))
+        print("Error Found: timestamp == {}".format(num))
+
 
 # CITATION: Refactoring and other IDE features
 # provided by PyCharm Contributors. Linting assessments provided by
 # Bryukhanov (PEP8Online.com) Works Cited at end
-
-
 class TestCase(unittest.TestCase):
     """This class is used to run unit tests on task.py"""
 
     def test1(self):
         """This is the base test, used to validate test suite is working."""
         self.assertTrue(True)
+
+    # random testing function 2
+    def func2_random_test(self):
+        for i in range(0, 100000):
+            num = random.randint(0, 32535143990)
+            func2_comp(num)
 
     def test_endian_null(self):
         """Testing that conv_endian handles 0 correctly."""
@@ -237,7 +258,7 @@ def generate_endian_tests(self):
         # CITATION: See ReadTheDocs Python Reference
         # Contributors, Works Cited at end -2147483648
         num = random.randrange(-2147483648, 2147483648)
-        print("Number for test{} was {}".format(x, num))
+        # print("Number for test{} was {}".format(x, num))
         test = build_test(conv_endian, num)
         # CITATION: See OSU Course Contributors, Works Cited
         setattr(self, "test_endian_{}".format(x), test)
