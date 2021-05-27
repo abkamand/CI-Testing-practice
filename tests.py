@@ -1,14 +1,14 @@
-import unittest
 import random
-from task import conv_num
+import unittest
+import datetime
+from task import my_datetime
 from task import conv_endian
+from task import conv_num
 
 
 # CITATION: Refactoring and other IDE features
 # provided by PyCharm Contributors. Linting assessments provided by
 # Bryukhanov (PEP8Online.com) Works Cited at end
-
-
 class TestCase(unittest.TestCase):
     """This class is used to run unit tests on task.py"""
 
@@ -16,7 +16,7 @@ class TestCase(unittest.TestCase):
         """This is the base test, used to validate test suite is working."""
         self.assertTrue(True)
 
-    # ------------------------ Function 1 Tests ---------------------------
+    # ------------------------ Function 1 Tests
     # -----Integer Tests-----
     def test1_func1(self):
         self.assertEqual(1, conv_num('1'))
@@ -275,15 +275,20 @@ class TestCase(unittest.TestCase):
     def test84_func1(self):
         self.assertEqual(None, conv_num(""))
 
-    # ------------------------ Function 3 Tests ---------------------------
+    # ------------------------ Function 2 Tests
+    # random testing function 2
+    def func2_random_test(self):
+        for i in range(0, 100000):
+            num = random.randint(0, 32535143990)
+            func2_comp(num)
 
+    # ------------------------ Function 3 Tests
     def test_endian_null(self):
         """Testing that conv_endian handles 0 correctly."""
         self.assertEqual("00", conv_endian(0, "big"))
 
-# ------------------------ Function 1 Random Testing ---------------------------
 
-
+# ------------------------ Function 1 Random Testing
 def create_int_str(str_len):
     int_str = ''
 
@@ -318,7 +323,8 @@ def create_float_str(str_len):
 
 def create_hex_str(str_len):
     POSSIBLE_DIGITS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
-                       'A', 'B', 'C', 'D', 'E', 'F', 'a', 'b', 'c', 'd', 'e', 'f']
+                       'A', 'B', 'C', 'D', 'E',
+                       'F', 'a', 'b', 'c', 'd', 'e', 'f']
     hex_str = ''
 
     pos_neg = random.randint(0, 1)
@@ -378,8 +384,22 @@ def generate_conv_num_testcases():
         setattr(TestCase, 'test_{}'.format(num_str), new_test)
 
 
-# ------------------------ Function 3 Random Testing ---------------------------
+# ------------------------ Function 2 Random Testing
+def refrm(s):
+    """convert datetime output to match my_datetime format"""
+    s2 = s[5:10] + s[4] + s[0:4]
+    return s2
 
+
+def func2_comp(num):
+    if (my_datetime(num) != refrm
+       (str(datetime.datetime.utcfromtimestamp(num)))):
+        print("My: ", my_datetime(num), " != ", refrm(
+            str(datetime.datetime.utcfromtimestamp(num))))
+        print("Error Found: timestamp == {}".format(num))
+
+
+# ------------------------ Function 3 Random Testing
 def hexify(num, endian_type):
     """Converts a number in hex to a string"""
     if endian_type == 0:
