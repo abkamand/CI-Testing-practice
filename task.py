@@ -435,6 +435,7 @@ def conv_endian(num, endian="big"):
         # Some invalid endianness was passed
         return None
 
+
 """
 WORKS CITED
 
