@@ -5,6 +5,9 @@ LOWER_CASE_HEX_ALPHAS = ['a', 'b', 'c', 'd', 'e', 'f']
 
 
 def is_hex(num_str):
+    """Takes a string of digits as a parameter. Returns True if the string represents a hex number.
+    Returns False otherwise.
+    """
     if num_str[0:2].lower() == '0x':
         return True
     else:
@@ -12,6 +15,9 @@ def is_hex(num_str):
 
 
 def is_float(num_str):
+    """Takes a string of digits as a parameter. Returns True if the string represents a float number.
+    Returns False otherwise.
+    """
     for char in num_str:
         if char == '.':
             return True
@@ -19,6 +25,9 @@ def is_float(num_str):
 
 
 def process_int(num_str):
+    """Takes a string representation of an integer as a parameter. Converts the the string to an int and
+    returns the int. If the string contains non-numeric characters the function returns None.
+    """
     number = 0
     place = 1
 
@@ -34,6 +43,10 @@ def process_int(num_str):
 
 
 def process_float(num_str):
+    """Takes a string representation of a float as a parameter. Converts the string to
+    a float and returns the float. If the string contains multiple decimal points the function
+    returns None. If the string contains any non-numeric characters the function returns None.
+    """
     num_str = num_str.split('.')
 
     # Check for multiple decimal points
@@ -71,6 +84,10 @@ def process_float(num_str):
 
 
 def process_hex(num_str):
+    """Takes a string representation of a hexadecimal number as a parameter. Converts the string to an integer
+    of equal value and returns the integer. If the string contains any non-numeric or non-hex-alpha digits
+    the function returns None.
+    """
     number = 0
     place = 1
     for char in reversed(num_str):
@@ -90,6 +107,11 @@ def process_hex(num_str):
 
 
 def conv_num(num_str):
+    """Takes a string representation of a number as a parameter. The number can be either an
+    integer, float, or hexadecimal. The function converts the string to an int or float and returns it.
+    If the number is an int or hex, the function returns an int. If the number is a float the function returns
+    a float.
+    """
     positive = True
     number = None
 
