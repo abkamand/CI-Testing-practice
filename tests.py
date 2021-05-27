@@ -11,6 +11,7 @@ def refrm(s):
 
 
 def func2_comp(num):
+    """This function compares the outputs from my_datetime and the built-in datetime, and prints an error message if they are not the same"""
     if (my_datetime(num) != refrm
        (str(datetime.datetime.utcfromtimestamp(num)))):
         print("My: ", my_datetime(num), " != ", refrm(
