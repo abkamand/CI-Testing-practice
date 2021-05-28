@@ -153,6 +153,8 @@ def conv_num(num_str):
 
 # ------------------------ FUNCTION 2 ---------------------------
 def my_datetime(num_sec):
+    """takes a timestamp value (num_sec) representing # of seconds passed
+    since 1/1/1970 and converts it to a string in MM-DD-YYYY format"""
     # convert seconds to days, 86400 seconds in a day
     days = num_sec // 86400
 

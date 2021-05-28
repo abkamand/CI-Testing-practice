@@ -276,8 +276,7 @@ class TestCase(unittest.TestCase):
         self.assertEqual(None, conv_num(""))
 
     # ------------------------ Function 2 Tests
-    # random testing function 2
-    def func2_random_test(self):
+    def test_rand_func2(self):
         for i in range(0, 100000):
             num = random.randint(0, 32535143990)
             func2_comp(num)
@@ -392,6 +391,8 @@ def refrm(s):
 
 
 def func2_comp(num):
+    """compare passed random num between my_datetime and python's built in
+    datetime, if they differ, output an error found message"""
     if (my_datetime(num) != refrm
        (str(datetime.datetime.utcfromtimestamp(num)))):
         print("My: ", my_datetime(num), " != ", refrm(
