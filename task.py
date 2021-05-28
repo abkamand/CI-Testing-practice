@@ -5,6 +5,9 @@ LOWER_CASE_HEX_ALPHAS = ['a', 'b', 'c', 'd', 'e', 'f']
 
 
 def is_hex(num_str):
+    """Takes a string of digits as a parameter. Returns True if the string represents a hex number.
+    Returns False otherwise.
+    """
     if num_str[0:2].lower() == '0x':
         return True
     else:
@@ -12,6 +15,9 @@ def is_hex(num_str):
 
 
 def is_float(num_str):
+    """Takes a string of digits as a parameter. Returns True if the string represents a float number.
+    Returns False otherwise.
+    """
     for char in num_str:
         if char == '.':
             return True
@@ -19,6 +25,9 @@ def is_float(num_str):
 
 
 def process_int(num_str):
+    """Takes a string representation of an integer as a parameter. Converts the the string to an int and
+    returns the int. If the string contains non-numeric characters the function returns None.
+    """
     number = 0
     place = 1
 
@@ -34,6 +43,10 @@ def process_int(num_str):
 
 
 def process_float(num_str):
+    """Takes a string representation of a float as a parameter. Converts the string to
+    a float and returns the float. If the string contains multiple decimal points the function
+    returns None. If the string contains any non-numeric characters the function returns None.
+    """
     num_str = num_str.split('.')
 
     # Check for multiple decimal points
@@ -65,10 +78,16 @@ def process_float(num_str):
         number += digit * place
         place *= .1
 
+    places = len(after_decimal)
+    number = round(number, places)
     return number
 
 
 def process_hex(num_str):
+    """Takes a string representation of a hexadecimal number as a parameter. Converts the string to an integer
+    of equal value and returns the integer. If the string contains any non-numeric or non-hex-alpha digits
+    the function returns None.
+    """
     number = 0
     place = 1
     for char in reversed(num_str):
@@ -77,7 +96,7 @@ def process_hex(num_str):
         elif char in UPPER_CASE_HEX_ALPHAS:
             digit = ord(char) - 55
         elif char in LOWER_CASE_HEX_ALPHAS:
-            digit = - 87
+            digit = ord(char) - 87
         else:
             return None
 
@@ -88,6 +107,11 @@ def process_hex(num_str):
 
 
 def conv_num(num_str):
+    """Takes a string representation of a number as a parameter. The number can be either an
+    integer, float, or hexadecimal. The function converts the string to an int or float and returns it.
+    If the number is an int or hex, the function returns an int. If the number is a float the function returns
+    a float.
+    """
     positive = True
     number = None
 
@@ -121,13 +145,89 @@ def conv_num(num_str):
     elif num_type == 'HEX':
         number = process_hex(num_str)
 
-    if positive:
-        return number
+    if number is not None and not positive:
+        number = -number
+
+    return number
+
+
+# ------------------------ FUNCTION 2 ---------------------------
+def my_datetime(num_sec):
+    """takes a timestamp value (num_sec) representing # of seconds passed
+    since 1/1/1970 and converts it to a string in MM-DD-YYYY format"""
+    # convert seconds to days, 86400 seconds in a day
+    days = num_sec // 86400
+
+    # create array that represents the amount of days in a month in a yearly
+    # calendar
+    days_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+    # initialize leap_year_counter to 2 since we start at 1970
+    leap_year_counter = 2
+    # initialize normal_year days to 365 and leap_year_days to 366
+    normal_year_days = 365
+    leap_year_days = 366
+
+    # initialize current_year to 1970, current_month to 1
+    current_year = 1970
+    current_month = 1
+
+    # convert days to years, update current_year
+    while ((leap_year_counter == 4 and days > 366) or
+            (leap_year_counter != 4 and days > 365)):
+        # if we're in a leap year
+        if ((current_year % 4 == 0 and current_year % 100 != 0) or
+                (current_year % 400 == 0)):
+            days = days - leap_year_days
+            leap_year_counter = 1
+        # not a leap year
+        else:
+            days = days - normal_year_days
+            leap_year_counter += 1
+
+        current_year += 1
+
+    # if we landed on a leap year, set 2nd element in days_months to 29
+    if ((current_year % 4 == 0 and current_year % 100 != 0) or
+            (current_year % 400 == 0)):
+        days_months[1] = 29
+
+    for month in days_months:
+        # break loop if we hit last month
+        if days < month:
+            break
+        else:
+            days = days - month
+            current_month += 1
+
+    # account for landing on january 1st edge case
+    if current_month == 13:
+        current_month = 1
+        current_year += 1
+
+    # finally, get our current_day
+    current_day = days + 1
+
+    # convert our integers into MM-DD-YYYY string format
+    string_day = ""
+    string_month = ""
+    string_year = str(current_year)
+
+    if current_day >= 1 and current_day < 10:
+        string_day = "0" + str(current_day)
     else:
-        return -number
+        string_day = str(current_day)
+
+    if current_month >= 1 and current_month < 10:
+        string_month = "0" + str(current_month)
+    else:
+        string_month = str(current_month)
+
+    return (string_month + "-" +
+            string_day + "-" + string_year)
 
 
-# ------------------- FUNCTION 2 -----------------------
+# ------------------- FUNCTION 3 -----------------------
 # CITATION: See PyCharm Contributors, Works Cited at end
 def convert_dec_to_bin(number):
     # CITATION: See Brennan, Works Cited at end
@@ -358,80 +458,6 @@ def conv_endian(num, endian="big"):
         # CITATION: See OSU Course Contributors, Works Cited at end
         # Some invalid endianness was passed
         return None
-
-
-# ------------------------ FUNCTION 3 ---------------------------
-def my_datetime(num_sec):
-    # convert seconds to days, 86400 seconds in a day
-    days = num_sec // 86400
-
-    # create array that represents the amount of days in a month in a yearly
-    # calendar
-    days_months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-
-    # initialize leap_year_counter to 2 since we start at 1970
-    leap_year_counter = 2
-    # initialize normal_year days to 365 and leap_year_days to 366
-    normal_year_days = 365
-    leap_year_days = 366
-
-    # initialize current_year to 1970, current_month to 1
-    current_year = 1970
-    current_month = 1
-
-    # convert days to years, update current_year
-    while ((leap_year_counter == 4 and days > 366) or
-            (leap_year_counter != 4 and days > 365)):
-        # if we're in a leap year
-        if ((current_year % 4 == 0 and current_year % 100 != 0) or
-                (current_year % 400 == 0)):
-            days = days - leap_year_days
-            leap_year_counter = 1
-        # not a leap year
-        else:
-            days = days - normal_year_days
-            leap_year_counter += 1
-
-        current_year += 1
-
-    # if we landed on a leap year, set 2nd element in days_months to 29
-    if ((current_year % 4 == 0 and current_year % 100 != 0) or
-            (current_year % 400 == 0)):
-        days_months[1] = 29
-
-    for month in days_months:
-        # break loop if we hit last month
-        if days < month:
-            break
-        else:
-            days = days - month
-            current_month += 1
-
-    # account for landing on january 1st edge case
-    if current_month == 13:
-        current_month = 1
-        current_year += 1
-
-    # finally, get our current_day
-    current_day = days + 1
-
-    # convert our integers into MM-DD-YYYY string format
-    string_day = ""
-    string_month = ""
-    string_year = str(current_year)
-
-    if current_day >= 1 and current_day < 10:
-        string_day = "0" + str(current_day)
-    else:
-        string_day = str(current_day)
-
-    if current_month >= 1 and current_month < 10:
-        string_month = "0" + str(current_month)
-    else:
-        string_month = str(current_month)
-
-    return (string_month + "-" +
-            string_day + "-" + string_year)
 
 
 """
