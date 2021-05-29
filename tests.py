@@ -277,7 +277,7 @@ class TestCase(unittest.TestCase):
 
     # ------------------------ Function 2 Tests
     def test_rand_func2(self):
-        """Test function that generates 10000 random timestamps to run through
+        """Test function that generates 100000 random timestamps to run through
         comparison calculator helper function to test function2"""
         for i in range(0, 100000):
             num = random.randint(0, 32535143990)
