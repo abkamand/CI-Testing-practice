@@ -277,6 +277,8 @@ class TestCase(unittest.TestCase):
 
     # ------------------------ Function 2 Tests
     def test_rand_func2(self):
+        """Test function that generates 100000 random timestamps to run through
+        comparison calculator helper function to test function2"""
         for i in range(0, 100000):
             num = random.randint(0, 32535143990)
             func2_comp(num)
@@ -383,7 +385,7 @@ def generate_conv_num_testcases():
         setattr(TestCase, 'test_{}'.format(num_str), new_test)
 
 
-# ------------------------ Function 2 Random Testing
+# ------------------------ Function 2 Random Testing Helper Functions
 def refrm(s):
     """convert datetime output to match my_datetime format"""
     s2 = s[5:10] + s[4] + s[0:4]
